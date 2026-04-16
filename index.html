@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بروتوكول الردود | معرض إيفان</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* المتغيرات الافتراضية (الوضع الفاتح) */
+        :root {
+            --bg-main: #f4f7fb;
+            --text-main: #1e272e;
+            --text-muted: #485460;
+            --card-bg: rgba(255, 255, 255, 0.7);
+            --card-border: rgba(255, 255, 255, 0.9);
+            --accent-blue: #0984e3;
+            --accent-glow-blue: rgba(9, 132, 227, 0.4);
+            --accent-green: #00b894;
+            --accent-gold: #f39c12;
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        /* المتغيرات (الوضع الداكن) */
+        [data-theme="dark"] {
+            --bg-main: #0f172a;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --card-bg: rgba(30, 41, 59, 0.6);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --accent-blue: #38bdf8;
+            --accent-glow-blue: rgba(56, 189, 248, 0.3);
+            --accent-green: #34d399;
+            --accent-gold: #fbbf24;
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            min-height: 100vh;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* حركات الإضاءة (Glowing) */
+        @keyframes breathe {
+            0% { box-shadow: 0 0 15px var(--accent-glow-blue); }
+            50% { box-shadow: 0 0 35px var(--accent-glow-blue); }
+            100% { box-shadow: 0 0 15px var(--accent-glow-blue); }
+        }
+
+        @keyframes text-glow {
+            0% { text-shadow: 0 0 5px var(--accent-blue); }
+            50% { text-shadow: 0 0 20px var(--accent-blue); }
+            100% { text-shadow: 0 0 5px var(--accent-blue); }
+        }
+
+        /* زر تبديل الوضع */
+        .theme-switch {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            padding: 10px 20px;
+            border-radius: 30px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            color: var(--text-main);
+            box-shadow: var(--glass-shadow);
+            z-index: 1000;
+        }
+
+        .theme-switch:hover {
+            transform: scale(1.05);
+        }
+
+        /* ترويسة الصفحة */
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            margin-top: 30px;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            font-weight: 900;
+            margin-bottom: 10px;
+            animation: text-glow 4s infinite;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        /* شبكة الكروت */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1200px;
+        }
+
+        /* الكرت الزجاجي المضيء */
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--card-border);
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: var(--glass-shadow);
+            position: relative;
+            overflow: hidden;
+            animation: breathe 5s infinite;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 5px; height: 100%;
+            background: var(--accent-blue);
+        }
+
+        .card-title {
+            font-size: 1.6em;
+            font-weight: 800;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border-bottom: 2px solid var(--card-border);
+            padding-bottom: 15px;
+        }
+
+        .card-title i {
+            font-size: 1.4em;
+            color: var(--accent-blue);
+        }
+
+        /* قسم البداية والنهاية */
+        .script-section {
+            margin-bottom: 25px;
+        }
+
+        .script-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 800;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .badge-start { background: var(--accent-green); box-shadow: 0 0 10px rgba(0, 184, 148, 0.4); }
+        .badge-end { background: var(--accent-gold); box-shadow: 0 0 10px rgba(243, 156, 18, 0.4); }
+
+        /* صندوق النصوص */
+        .text-box {
+            background: rgba(0, 0, 0, 0.04);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-right: 3px solid transparent;
+            transition: 0.3s;
+        }
+
+        [data-theme="dark"] .text-box { background: rgba(255, 255, 255, 0.05); }
+
+        .text-box:hover {
+            transform: translateX(-5px);
+            background: rgba(0, 0, 0, 0.08);
+            border-right-color: var(--accent-blue);
+        }
+
+        [data-theme="dark"] .text-box:hover { background: rgba(255, 255, 255, 0.1); }
+
+        .lang-label {
+            font-size: 0.8em;
+            font-weight: 800;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .text-arabic {
+            font-size: 1.2em;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .text-kurdish {
+            font-size: 1.2em;
+            font-weight: 800;
+            color: var(--accent-blue);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2.2em; }
+            .grid-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="theme-switch" onclick="toggleTheme()">
+        <i class="fa-solid fa-moon" id="theme-icon"></i>
+        <span id="theme-text">الوضع الداكن</span>
+    </button>
+
+    <div class="header">
+        <h1>بروتوكول الكلمات المعتمدة</h1>
+        <p>الدليل السريع للردود الافتتاحية والختامية لجميع أقسام معرض إيفان</p>
+    </div>
+
+    <div class="grid-container">
+
+        <div class="glass-card" style="--accent-blue: #0984e3; --accent-glow-blue: rgba(9, 132, 227, 0.3);">
+            <div class="card-title">
+                <i class="fa-solid fa-headset"></i>
+                قسم الردود (الإنترنت)
+            </div>
+
+            <div class="script-section">
+                <div class="script-badge badge-start"><i class="fa-solid fa-play"></i> في بداية المحادثة</div>
+                <div class="text-box">
+                    <div class="lang-label">عربي</div>
+                    <div class="text-arabic">"أهلاً بك في معرض إيفان، كيف يمكنني مساعدتك اليوم؟"</div>
+                    <div class="lang-label">كوردي (باديني)</div>
+                    <div class="text-kurdish">"بخێر هاتی بۆ پێشانگەها ئاڤان، چەوا دشێم هاریکاریا تە بکەم؟"</div>
+                </div>
+            </div>
+
+            <div class="script-section">
+                <div class="script-badge badge-end"><i class="fa-solid fa-stop"></i> في نهاية المحادثة</div>
+                <div class="text-box">
+                    <div class="lang-label">عربي</div>
+                    <div class="text-arabic">"إذا كان لديك أي استفسار آخر، نحن هنا لخدمتك دائماً. يومك سعيد!"</div>
+                    <div class="lang-label">كوردي (باديني)</div>
+                    <div class="text-kurdish">"ئەگەر هەر پرسیارەکا دی هەبیت، ئەم لێرەینە د خزمەتا تە دا. ڕۆژەکا خۆش!"</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass-card" style="--accent-blue: #e84393; --accent-glow-blue: rgba(232, 67, 147, 0.3);">
+            <div class="card-title">
+                <i class="fa-solid fa-video"></i>
+                قسم الإعلام (الفيديوهات)
+            </div>
+
+            <div class="script-section">
+                <div class="script-badge badge-start"><i class="fa-solid fa-play"></i> أول 3 ثواني في الفيديو</div>
+                <div class="text-box">
+                    <div class="lang-label">عربي</div>
+                    <div class="text-arabic">"سلام واحترام... معكم فريق معرض إيفان... تعالوا لنرى هذه القطعة عن قرب."</div>
+                    <div class="lang-label">كوردي (باديني)</div>
+                    <div class="text-kurdish">"سلاڤ و رێز... ئەز [ناڤێ تە]م ژ پێشانگەها ئاڤان... وەرن دا ڤێ پارچێ ژ نێزیکڤە ببینین."</div>
+                </div>
+            </div>
+
+            <div class="script-section">
+                <div class="script-badge badge-end"><i class="fa-solid fa-stop"></i> ختام الفيديو (دعوة للإجراء)</div>
+                <div class="text-box">
+                    <div class="lang-label">عربي</div>
+                    <div class="text-arabic">"إذا أعجبتكم، أرسلوا لنا رسالة أو تفضلوا بزيارة المعرض... نحن في خدمتكم."</div>
+                    <div class="lang-label">كوردي (باديني)</div>
+                    <div class="text-kurdish">"ئەگەر وە دڤێت، نامەیەکێ بۆ مە فرێکن یان سەرەدانا پێشانگەهێ بکەن... ئەم د خزمەتا وە دانە."</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass-card" style="--accent-blue: #00cec9; --accent-glow-blue: rgba(0, 206, 201, 0.3);">
+            <div class="card-title">
+                <i class="fa-solid fa-handshake"></i>
+                قسم المبيعات (الصالة)
+            </div>
+
+            <div class="script-section">
+                <div class="script-badge badge-start"><i class="fa-solid fa-play"></i> عند استقبال الزبون</div>
+                <div class="text-box">
+                    <div class="lang-label">عربي</div>
+                    <div class="text-arabic">"أهلاً وسهلاً بكم في معرض إيفان، تفضلوا، خذوا وقتكم وأنا بالقرب منكم لأي مساعدة."</div>
+                    <div class="lang-label">كوردي (باديني)</div>
+                    <div class="text-kurdish">"ب خێر هاتن بۆ پێشانگەها ئاڤان، کەرەمکەن، دەمێ خۆ وەرگرن و ئەز یێ ل نێزیک بۆ هەر هاریکارییەکێ."</div>
+                </div>
+            </div>
+
+            <div class="script-section">
+                <div class="script-badge badge-end"><i class="fa-solid fa-stop"></i> عند توديع الزبون (بعد الشراء)</div>
+                <div class="text-box">
+                    <div class="lang-label">عربي</div>
+                    <div class="text-arabic">"مبارك لكم، اختيار موفق! نتمنى أن تملأ هذه القطعة بيتكم بالسعادة."</div>
+                    <div class="lang-label">كوردي (باديني)</div>
+                    <div class="text-kurdish">"پیرۆزە، هەلبژارتنەکا گەلەک باشە! هیڤیدارین ئەڤ پارچە مالا وە پڕی خۆشی بکەت."</div>
+                </div>
+            </div>
+
+            <div class="script-section">
+                <div class="script-badge badge-end" style="background: #e17055; box-shadow: 0 0 10px rgba(225, 112, 85, 0.4);"><i class="fa-solid fa-stop"></i> عند توديع الزبون (بدون شراء)</div>
+                <div class="text-box">
+                    <div class="lang-label">عربي</div>
+                    <div class="text-arabic">"شرفتونا بزيارتكم، المعرض معرضكم في أي وقت."</div>
+                    <div class="lang-label">كوردي (باديني)</div>
+                    <div class="text-kurdish">"سەرچاڤان، وە ئەم سەرفراز کرین، پێشانگەهـ یا وە یە ل هەر دەمەکێ."</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            const themeText = document.getElementById('theme-text');
+            
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                themeIcon.className = 'fa-solid fa-moon';
+                themeText.textContent = 'الوضع الداكن';
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                themeIcon.className = 'fa-solid fa-sun';
+                themeText.textContent = 'الوضع الفاتح';
+            }
+        }
+    </script>
+</body>
+</html>
