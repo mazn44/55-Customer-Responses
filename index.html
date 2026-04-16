@@ -24,6 +24,7 @@
             --neon-orange: #f97316;
             --neon-red: #ef4444;
             --neon-yellow: #eab308;
+            --neon-cyan: #06b6d4; /* لون جديد لقسم الردود */
             
             --card-radius: 20px;
             --transition-speed: 0.4s;
@@ -42,6 +43,7 @@
             --neon-orange: #ea580c;
             --neon-red: #dc2626;
             --neon-yellow: #ca8a04;
+            --neon-cyan: #0891b2;
         }
 
         * {
@@ -60,8 +62,7 @@
         }
 
         #particles-canvas {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             z-index: -1; pointer-events: none;
         }
 
@@ -71,12 +72,9 @@
 
         /* شريط التنقل */
         header {
-            position: fixed;
-            top: 0; width: 100%; z-index: 1000;
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--glass-border);
-            padding: 10px 30px;
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: var(--glass-bg); backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border); padding: 10px 30px;
             display: flex; justify-content: space-between; align-items: center;
         }
 
@@ -109,21 +107,19 @@
         aside ul { list-style: none; }
         aside ul li { margin-bottom: 5px; }
         aside ul li a {
-            display: flex; flex-direction: column; padding: 12px 15px;
+            display: flex; flex-direction: column; padding: 10px 15px;
             color: var(--text-main); text-decoration: none; border-radius: 12px; transition: 0.3s;
         }
         aside ul li a:hover { background: rgba(255, 255, 255, 0.1); transform: translateX(-5px); border-right: 3px solid var(--neon-blue); }
-        aside ul li a strong { font-size: 15px; color: var(--neon-blue); margin-bottom: 3px; display: flex; align-items: center; gap: 8px; }
-        aside ul li a span { font-size: 12px; color: var(--text-muted); }
+        aside ul li a strong { font-size: 14px; color: var(--neon-blue); margin-bottom: 3px; display: flex; align-items: center; gap: 8px; }
+        aside ul li a span { font-size: 11px; color: var(--text-muted); }
 
         /* المحتوى الرئيسي */
-        main {
-            margin-right: 280px; padding: 100px 30px 60px;
-        }
+        main { margin-right: 280px; padding: 100px 30px 60px; }
 
         .hero { text-align: center; margin-bottom: 60px; }
-        .hero h2 { font-size: 3em; font-weight: 900; margin-bottom: 15px; text-shadow: 0 0 15px rgba(0, 210, 255, 0.3); }
-        .hero p { font-size: 1.1em; color: var(--text-muted); max-width: 700px; margin: 0 auto; }
+        .hero h2 { font-size: 2.8em; font-weight: 900; margin-bottom: 15px; text-shadow: 0 0 15px rgba(0, 210, 255, 0.3); }
+        .hero p { font-size: 1.1em; color: var(--text-muted); max-width: 700px; margin: 0 auto; line-height: 1.6;}
 
         .dept-section { margin-bottom: 60px; opacity: 0; transform: translateY(30px); transition: 0.6s ease; }
         .dept-section.visible { opacity: 1; transform: translateY(0); }
@@ -134,7 +130,7 @@
         }
         .dept-header i { font-size: 28px; padding: 12px; background: rgba(255, 255, 255, 0.05); border-radius: 15px; }
         .dept-header h3 { font-size: 1.8em; font-weight: 800; display: flex; flex-direction: column; }
-        .dept-header h3 span { font-size: 14px; color: var(--text-muted); font-weight: 500; margin-top: 5px; }
+        .dept-header h3 span { font-size: 13px; color: var(--text-muted); font-weight: 500; margin-top: 5px; }
 
         .grid-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; }
 
@@ -146,26 +142,26 @@
 
         /* القوائم (مسموح / ممنوع) */
         .list-box { margin-bottom: 20px; }
-        .list-box h4 { font-size: 16px; font-weight: 800; margin-bottom: 15px; display: inline-block; padding: 5px 15px; border-radius: 8px; }
+        .list-box h4 { font-size: 15px; font-weight: 800; margin-bottom: 15px; display: inline-block; padding: 5px 15px; border-radius: 8px; }
         .list-allowed h4 { background: rgba(16, 185, 129, 0.2); color: var(--neon-green); }
         .list-forbidden h4 { background: rgba(239, 68, 68, 0.2); color: var(--neon-red); }
         
         .list-box ul { list-style: none; padding-right: 10px; }
-        .list-box ul li { position: relative; padding-right: 20px; margin-bottom: 10px; font-size: 14px; font-weight: 500; }
+        .list-box ul li { position: relative; padding-right: 20px; margin-bottom: 10px; font-size: 14px; font-weight: 500; line-height: 1.5; }
         .list-allowed ul li::before { content: '✓'; color: var(--neon-green); position: absolute; right: 0; font-weight: bold; }
         .list-forbidden ul li::before { content: '✗'; color: var(--neon-red); position: absolute; right: 0; font-weight: bold; }
 
         /* مربعات الإحصائيات (Stats) */
         .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; text-align: center; }
         .stat-box { background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; border: 1px solid var(--glass-border); }
-        .stat-box strong { display: block; font-size: 24px; color: var(--neon-blue); margin-bottom: 5px; }
+        .stat-box strong { display: block; font-size: 22px; color: var(--neon-blue); margin-bottom: 5px; }
         .stat-box span { font-size: 12px; color: var(--text-muted); }
 
         /* صناديق الأنظمة (SPIN, 5S) */
         .system-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin-bottom: 20px; }
         .system-item { background: rgba(0,0,0,0.2); padding: 12px; border-radius: 10px; display: flex; align-items: center; gap: 15px; border-right: 3px solid var(--neon-purple); }
         [data-theme="light"] .system-item { background: rgba(0,0,0,0.05); }
-        .system-item .letter { font-size: 24px; font-weight: 900; color: var(--neon-purple); width: 40px; text-align: center; }
+        .system-item .letter { font-size: 22px; font-weight: 900; color: var(--neon-purple); width: 40px; text-align: center; }
         .system-item .desc h5 { font-size: 14px; margin-bottom: 3px; }
         .system-item .desc p { font-size: 12px; color: var(--text-muted); }
 
@@ -174,12 +170,12 @@
         .bubble-content { background: rgba(0, 0, 0, 0.25); padding: 15px; border-radius: 12px; border-bottom-right-radius: 0; font-size: 14px; line-height: 1.6; font-weight: 500; border: 1px solid rgba(255,255,255,0.03); margin-bottom: 10px; }
         [data-theme="light"] .bubble-content { background: #fff; border-color: rgba(0,0,0,0.08); }
         .lang-title { font-size: 11px; font-weight: 800; color: var(--text-muted); margin-bottom: 5px; text-transform: uppercase; }
-        .ku-text { color: var(--neon-blue); font-weight: 700; }
+        .ku-text { color: var(--neon-blue); font-weight: 700; margin-bottom: 5px; }
 
         /* قاعدة ذهبية أو ملاحظة */
-        .golden-rule { background: linear-gradient(135deg, rgba(234, 179, 8, 0.15), transparent); border: 1px solid var(--neon-yellow); text-align: center; padding: 20px; border-radius: 15px; margin-top: 20px; }
-        .golden-rule i { color: var(--neon-yellow); font-size: 24px; margin-bottom: 10px; }
-        .golden-rule p { font-size: 14px; font-weight: 700; line-height: 1.6; }
+        .golden-rule { background: linear-gradient(135deg, rgba(234, 179, 8, 0.15), transparent); border: 1px solid var(--neon-yellow); text-align: center; padding: 15px; border-radius: 12px; margin-top: 20px; }
+        .golden-rule i { color: var(--neon-yellow); font-size: 22px; margin-bottom: 10px; }
+        .golden-rule p { font-size: 13px; font-weight: 700; line-height: 1.6; }
 
         /* Footer */
         footer { text-align: center; padding: 30px; margin-top: 50px; border-top: 1px solid var(--glass-border); color: var(--text-muted); font-size: 13px; font-weight: bold; }
@@ -187,6 +183,7 @@
         /* ألوان الأقسام */
         .dept-sales i { color: var(--neon-blue); border-color: var(--neon-blue); }
         .dept-marketing i { color: var(--neon-purple); border-color: var(--neon-purple); }
+        .dept-cs i { color: var(--neon-cyan); border-color: var(--neon-cyan); }
         .dept-carpentry i { color: var(--neon-orange); border-color: var(--neon-orange); }
         .dept-drivers i { color: var(--neon-green); border-color: var(--neon-green); }
         .dept-warehouse i { color: var(--neon-red); border-color: var(--neon-red); }
@@ -214,19 +211,19 @@
     <aside>
         <ul>
             <li><a href="#sales"><strong><i class="fa-solid fa-handshake"></i> قسم المبيعات</strong><span>متابعة الزبائن والعروض</span></a></li>
+            <li><a href="#cs"><strong><i class="fa-solid fa-headset"></i> الردود الرقمية</strong><span>خدمة العملاء والرسائل</span></a></li>
             <li><a href="#marketing"><strong><i class="fa-solid fa-video"></i> قسم التسويق والإعلام</strong><span>المحتوى والترويج</span></a></li>
             <li><a href="#carpentry"><strong><i class="fa-solid fa-hammer"></i> قسم النجارة والتركيب</strong><span>التصنيع والصيانة</span></a></li>
             <li><a href="#drivers"><strong><i class="fa-solid fa-truck-fast"></i> قسم السائقين</strong><span>التوصيل والنقل</span></a></li>
             <li><a href="#warehouse"><strong><i class="fa-solid fa-boxes-stacked"></i> قسم المناولة والمخازن</strong><span>تحميل وتنزيل وتخزين</span></a></li>
             <li><a href="#cleaners"><strong><i class="fa-solid fa-mug-hot"></i> قسم التنظيف والضيافة</strong><span>النظافة والاستقبال</span></a></li>
-            <li><a href="#"><strong><i class="fa-solid fa-scale-balanced"></i> سياسة المعرض الشاملة</strong><span>الشكاوى والملاحظات</span></a></li>
         </ul>
     </aside>
 
     <main>
         <div class="hero">
             <h2>دليل التشغيل الاحترافي</h2>
-            <p>منهجية عمل متكاملة لأقسام معرض إيفان، تضمن تقديم أعلى مستويات الخدمة والراحة للزبون من لحظة دخوله حتى ما بعد البيع.</p>
+            <p>منهجية عمل متكاملة لأقسام معرض إيفان، تضمن تقديم أعلى مستويات الخدمة والراحة للزبون من لحظة دخوله أو مراسلته للصفحة حتى ما بعد البيع.</p>
         </div>
 
         <div class="dept-section" id="sales">
@@ -246,24 +243,24 @@
                     <div class="list-box list-allowed">
                         <h4><i class="fa-solid fa-check-circle"></i> المسموح</h4>
                         <ul>
-                            <li>سؤال الزبون عن المقاس، اللون، الميزانية</li>
-                            <li>عرض خيارين أو ثلاثة — لا أكثر</li>
-                            <li>شرح الفروقات بين القطع بوضوح</li>
-                            <li>اقتراح حلول عملية تناسب البيت والميزانية</li>
-                            <li>متابعة بواتساب بعد ساعتين إذا غادر بلا شراء</li>
-                            <li>توجيهه لطابق آخر إذا لم يجد ما يريد</li>
+                            <li>سؤال الزبون عن المقاس، اللون، الميزانية.</li>
+                            <li>عرض خيارين أو ثلاثة — لا أكثر.</li>
+                            <li>شرح الفروقات بين القطع بوضوح وأمانة.</li>
+                            <li>اقتراح حلول عملية تناسب البيت والميزانية.</li>
+                            <li>متابعة بواتساب بعد ساعتين إذا غادر بلا شراء.</li>
+                            <li>توجيهه لطابق آخر إذا لم يجد ما يريد.</li>
                         </ul>
                     </div>
 
                     <div class="list-box list-forbidden">
                         <h4><i class="fa-solid fa-ban"></i> الممنوع</h4>
                         <ul>
-                            <li>الضغط على الزبون للشراء الفوري</li>
-                            <li>الحلفان بالله — الضمان الكتابي أقوى</li>
-                            <li>الإلحاح المزعج والمشي خلف الزبون</li>
-                            <li>تضخيم السعر قبل الخصم</li>
-                            <li>الكذب بشأن التوفر أو الحالة</li>
-                            <li>مقارنة المعرض بالمنافسين سلباً</li>
+                            <li>الضغط على الزبون للشراء الفوري.</li>
+                            <li>الحلفان بالله — الضمان الكتابي والمعاملة الطيبة أقوى.</li>
+                            <li>الإلحاح المزعج والمشي خلف الزبون خطوة بخطوة.</li>
+                            <li>تضخيم السعر قبل الخصم لإيهامه بتخفيض كبير.</li>
+                            <li>الكذب بشأن التوفر أو الحالة.</li>
+                            <li>مقارنة المعرض بالمنافسين سلباً.</li>
                         </ul>
                     </div>
                 </div>
@@ -272,26 +269,78 @@
                     <div class="scenario-title"><i class="fa-solid fa-brain"></i> منهجية البيع — SPIN</div>
                     <div class="system-grid">
                         <div class="system-item"><div class="letter">S</div><div class="desc"><h5>Situation (الموقف)</h5><p>شقة جديدة؟ غرفة نوم؟</p></div></div>
-                        <div class="system-item"><div class="letter">P</div><div class="desc"><h5>Problem (المشكلة)</h5><p>أكبر مشكلة بالقديم؟</p></div></div>
-                        <div class="system-item"><div class="letter">I</div><div class="desc"><h5>Implication (التأثير)</h5><p>لو طلع كبير الغرفة تضيق</p></div></div>
-                        <div class="system-item"><div class="letter">N</div><div class="desc"><h5>Need-payoff (الحل)</h5><p>الزاوية توفر متر كامل</p></div></div>
+                        <div class="system-item"><div class="letter">P</div><div class="desc"><h5>Problem (المشكلة)</h5><p>أكبر مشكلة بالأثاث القديم؟</p></div></div>
+                        <div class="system-item"><div class="letter">I</div><div class="desc"><h5>Implication (التأثير)</h5><p>لو طلع كبير الغرفة تضيق.</p></div></div>
+                        <div class="system-item"><div class="letter">N</div><div class="desc"><h5>Need-payoff (الحل)</h5><p>غرفة الزاوية توفر متر كامل.</p></div></div>
                     </div>
 
                     <div class="scenario-title" style="margin-top:20px;"><i class="fa-solid fa-comments"></i> نصوص معتمدة (بادینی / عربي)</div>
                     <div class="bubble-content">
                         <div class="lang-title">الترحيب — Xweş hatî</div>
                         <div class="ku-text">خوێش هاتی، چاوا دشێم هاریکاریا تە بکەم؟</div>
-                        <div>أهلاً وسهلاً، كيف أستطيع مساعدتك؟</div>
+                        <div>أهلاً وسهلاً أخي العزيز، نورت المعرض. تفضل كيف أقدر أساعدك؟</div>
                     </div>
                     <div class="bubble-content">
                         <div class="lang-title">التشخيص — Pirs</div>
                         <div class="ku-text">قییاسا ژووری تە چەندە؟ رەنگا دیوارا چیە؟ بودجەی تە نزیکێ چەندە؟</div>
-                        <div>ما قياس الغرفة؟ لون الجدار؟ الميزانية التقريبية؟</div>
+                        <div>ما قياس الغرفة؟ لون الجدار؟ الميزانية التقريبية حتى أطلعك على الأنسب؟</div>
+                    </div>
+                    <div class="bubble-content">
+                        <div class="lang-title">المتابعة والتوديع — Follow Up & Xatirê te</div>
+                        <div class="ku-text">خاتری تە، هەر کاتێ تو هاتی دکەی مە ل وێ دەرۆ دا نە.</div>
+                        <div>شرفتونا بزيارتكم، المعرض معرضكم بأي وقت، وأي استفسار إحنا حاضرين.</div>
                     </div>
                     
                     <div class="golden-rule">
                         <i class="fa-solid fa-trophy"></i>
-                        <p>🎯 البيع الناجح هو الذي يبني ثقة طويلة المدى — لا صفقة سريعة فقط. الزبون يشتري راحة قرار وثقة.</p>
+                        <p>🎯 البيع الناجح يبني ثقة طويلة المدى — لا صفقة سريعة فقط. الزبون يشتري راحة قرار وثقة.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dept-section" id="cs">
+            <div class="dept-header dept-cs">
+                <i class="fa-solid fa-headset"></i>
+                <h3 style="color:var(--neon-cyan);">قسم الردود على العملاء <span>Customer Service - كل دقيقة تأخير = زبون ضائع. الهدف: الرد خلال 5 دقائق.</span></h3>
+            </div>
+            
+            <div class="grid-cards">
+                <div class="glass-card" style="border-color: rgba(6, 182, 212, 0.3);">
+                    <div class="scenario-title" style="color:var(--neon-cyan); border-color:var(--neon-cyan);"><i class="fa-solid fa-play"></i> كيف يبدأ الرد</div>
+                    <div class="bubble-content">
+                        <div class="lang-title">الترحيب بالرسائل</div>
+                        <div class="ku-text">بخێر هاتی بۆ ئاڤان — چەوا دشێم هاریکاریا تە بکەم؟</div>
+                        <div>أهلاً بك في إيفان — تفضل عيني كيف أستطيع مساعدتك اليوم؟</div>
+                    </div>
+                    
+                    <div class="scenario-title" style="color:var(--neon-cyan); border-color:var(--neon-cyan); margin-top:20px;"><i class="fa-solid fa-triangle-exclamation"></i> حالات خاصة</div>
+                    <div class="bubble-content">
+                        <div class="lang-title">عند الغضب أو الشكوى</div>
+                        <div class="ku-text">حەقێ تەیە لێبورینێ دخازین — بهێلە چارەسەر بکەم.</div>
+                        <div>حقك علينا ونعتذر منك جداً — ثواني ونحل المشكلة فوراً. (لا تجادل الزبون أبداً).</div>
+                    </div>
+                    <div class="bubble-content">
+                        <div class="lang-title">القطعة مباعة (لا تقل ماكو)</div>
+                        <div>نفدت عيني، بس عندنا بديل أقوى وبنفس السعر، تحب أرسلك صوره تشوفه؟ (لا تقل "نمابا برا ببورة" بل قدم البديل).</div>
+                    </div>
+                </div>
+
+                <div class="glass-card" style="border-color: rgba(6, 182, 212, 0.3);">
+                    <div class="scenario-title" style="color:var(--neon-cyan); border-color:var(--neon-cyan);"><i class="fa-solid fa-stop"></i> كيف تنتهي المحادثة</div>
+                    <div class="bubble-content">
+                        <div class="lang-title">إغلاق مفتوح (لإبقاء التواصل)</div>
+                        <div>تحب أرسلك صور غرفة النوم اللي تطابق الكنب؟ (أغلق بسؤال مفتوح — لا تنهي المحادثة بجملة جافة).</div>
+                    </div>
+                    <div class="bubble-content">
+                        <div class="lang-title">توديع لائق</div>
+                        <div class="ku-text">ئەگەر هەر پرسیارەکا دی هەبیت، ئەم لێرەینە د خزمەتا تە دا.</div>
+                        <div>إذا عندك أي استفسار ثاني، إحنا بخدمتك دائماً. المعرض معرضكم!</div>
+                    </div>
+                    
+                    <div class="golden-rule" style="border-color:var(--neon-cyan);">
+                        <i class="fa-solid fa-heart-circle-check" style="color:var(--neon-cyan);"></i>
+                        <p>نحن لا نرد على الرسائل فقط، نحن نبني اسماً، ونصنع ثقة. الزبون خلف الشاشة يحتاج للشعور بالاهتمام.</p>
                     </div>
                 </div>
             </div>
@@ -300,58 +349,58 @@
         <div class="dept-section" id="marketing">
             <div class="dept-header dept-marketing">
                 <i class="fa-solid fa-video"></i>
-                <h3>قسم التسويق والإعلام <span>Marketing & Media - نبني اسماً لا نبيع صورة فقط.</span></h3>
+                <h3 style="color:var(--neon-purple);">قسم التسويق والإعلام <span>Marketing & Media - نبني اسماً لا نبيع صورة فقط.</span></h3>
             </div>
             
             <div class="grid-cards">
                 <div class="glass-card">
-                    <div class="scenario-title" style="color:var(--neon-purple);"><i class="fa-solid fa-crown"></i> المبادئ الذهبية للقسم</div>
+                    <div class="scenario-title" style="color:var(--neon-purple); border-color:var(--neon-purple);"><i class="fa-solid fa-crown"></i> المبادئ الذهبية للقسم</div>
                     <div class="system-grid">
-                        <div class="system-item" style="border-color:var(--neon-purple);"><div class="letter">🎯</div><div class="desc"><h5>الصدق قبل التجميل</h5><p>عرض العيب قبل الميزة في المستعمل</p></div></div>
-                        <div class="system-item" style="border-color:var(--neon-purple);"><div class="letter">✨</div><div class="desc"><h5>الوضوح قبل المبالغة</h5><p>رسالة واحدة لكل فيديو أو صورة</p></div></div>
-                        <div class="system-item" style="border-color:var(--neon-purple);"><div class="letter">👑</div><div class="desc"><h5>الهيبة قبل الضجيج</h5><p>بدون موسيقى صاخبة أو فلاتر مبالغة</p></div></div>
+                        <div class="system-item" style="border-color:var(--neon-purple);"><div class="letter">🎯</div><div class="desc"><h5>الصدق قبل التجميل</h5><p>عرض العيب قبل الميزة في المستعمل (الشفافية الصادمة).</p></div></div>
+                        <div class="system-item" style="border-color:var(--neon-purple);"><div class="letter">✨</div><div class="desc"><h5>الوضوح قبل المبالغة</h5><p>رسالة واحدة لكل فيديو، إضاءة طبيعية وتثبيت الكاميرا.</p></div></div>
+                        <div class="system-item" style="border-color:var(--neon-purple);"><div class="letter">👑</div><div class="desc"><h5>الهيبة قبل الضجيج</h5><p>بدون موسيقى صاخبة أو انتقالات مزعجة.</p></div></div>
                     </div>
 
                     <div class="list-box list-allowed" style="margin-top:20px;">
                         <h4><i class="fa-solid fa-check-circle"></i> المسموح</h4>
                         <ul>
-                            <li>تصوير القطع بإضاءة واضحة ومريحة</li>
-                            <li>ذكر المقاس، اللون، الحالة، والسعر بصدق</li>
-                            <li>لهجة بادینی مع ترجمة عربية مختصرة</li>
-                            <li>نهاية بدعوة واحدة واضحة للتواصل</li>
+                            <li>تصوير القطع بإضاءة واضحة ومريحة وتثبيت الكاميرا.</li>
+                            <li>ذكر المقاس، اللون، الحالة، والسعر بصدق تام.</li>
+                            <li>استخدام لهجة بادینی مع ترجمة عربية مختصرة ومفهومة.</li>
+                            <li>نهاية الفيديو بدعوة واحدة واضحة للتواصل.</li>
                         </ul>
                     </div>
                     <div class="list-box list-forbidden">
                         <h4><i class="fa-solid fa-ban"></i> الممنوع</h4>
                         <ul>
-                            <li>الموسيقى الصاخبة والفلاتر المبالغة</li>
-                            <li>السخرية من المنافسين أو وعود كاذبة (أرخص سعر)</li>
-                            <li>إخفاء عيوب القطع المستعملة</li>
+                            <li><strong>يمنع النشر العشوائي بدون مراجعة وموافقة مدير التسويق (مازن).</strong></li>
+                            <li>الموسيقى الصاخبة والمؤثرات والانتقالات (Transitions) المبالغ فيها.</li>
+                            <li>النشر المتكرر المفرط (الحد الأقصى فيديو واحد كل ساعة).</li>
+                            <li>تصوير الزبائن بدون إذن مسبق.</li>
+                            <li>السخرية من المنافسين أو إطلاق وعود كاذبة مثل "أرخص سعر".</li>
+                            <li>إخفاء عيوب القطع المستعملة (صوّر العيب قبل الميزة).</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="glass-card">
-                    <div class="scenario-title" style="color:var(--neon-purple);"><i class="fa-solid fa-chart-pie"></i> قاعدة المحتوى 70 · 20 · 10</div>
+                    <div class="scenario-title" style="color:var(--neon-purple); border-color:var(--neon-purple);"><i class="fa-solid fa-chart-pie"></i> قاعدة المحتوى 70 · 20 · 10</div>
                     <div class="stats-grid">
                         <div class="stat-box" style="border-color:var(--neon-purple);"><strong>70%</strong><span>تعليمي (كيف تختار/تقيس)</span></div>
                         <div class="stat-box" style="border-color:var(--neon-purple);"><strong>20%</strong><span>عرض احترافي للقطع</span></div>
                         <div class="stat-box" style="border-color:var(--neon-purple);"><strong>10%</strong><span>بيع مباشر وعروض</span></div>
                     </div>
 
-                    <div class="scenario-title" style="margin-top:20px; color:var(--neon-purple);"><i class="fa-solid fa-comment-dots"></i> نصوص معتمدة</div>
+                    <div class="scenario-title" style="margin-top:20px; color:var(--neon-purple); border-color:var(--neon-purple);"><i class="fa-solid fa-comment-dots"></i> نصوص معتمدة (بداية ونهاية الفيديو)</div>
                     <div class="bubble-content">
                         <div class="lang-title">خطاف الفيديو — أول 3 ثواني</div>
                         <div class="ku-text">سلاڤ و رێز — ئەز ژ پێشانگەها ئاڤان وەرن ڤێ پارچێ پێکڤە ببینین.</div>
-                        <div>تحية واحترام — من معرض إيفان، لنرى هذه القطعة معاً.</div>
+                        <div>تحية واحترام — معكم فريق معرض إيفان، تعالوا نشوف هالقطعة معاً.</div>
                     </div>
                     <div class="bubble-content">
-                        <div class="lang-title">القطعة مباعة (في الرسائل)</div>
-                        <div>نفدت — بس عندنا بديل أقوى بنفس السعر، تحب أشوفله معك؟ (لا تقل "نمابا برا ببورة" بل قدم البديل فوراً)</div>
-                    </div>
-                    <div class="bubble-content">
-                        <div class="lang-title">إغلاق المحادثة</div>
-                        <div>تحب أرسلك صور غرفة النوم اللي تطابق الكنب؟ (أغلق بسؤال مفتوح).</div>
+                        <div class="lang-title">نهاية الفيديو — CTA</div>
+                        <div class="ku-text">ئەگەر د دلێ تە دا بوو — نامەیەکێ بۆ مە بنێرە، یان سەرەدانا مە بکە ل زركا.</div>
+                        <div>إذا أعجبتكم — راسلونا على الصفحة، أو تفضلوا بزيارتنا في زركا وإحنا بالخدمة.</div>
                     </div>
                 </div>
             </div>
@@ -360,40 +409,53 @@
         <div class="dept-section" id="carpentry">
             <div class="dept-header dept-carpentry">
                 <i class="fa-solid fa-hammer"></i>
-                <h3>قسم النجارة والتركيب <span>Carpentry - الفني آخر انطباع، إذا طلع مضبوط الزبون يصير مسوقاً مجانياً.</span></h3>
+                <h3 style="color:var(--neon-orange);">قسم النجارة والتركيب <span>Carpentry - الفني آخر انطباع، إذا طلع الشغل مضبوط الزبون يصير مسوقاً مجانياً.</span></h3>
             </div>
             
             <div class="grid-cards">
                 <div class="glass-card">
                     <div class="stats-grid">
                         <div class="stat-box" style="border-color:var(--neon-orange);"><strong>📞</strong><span>اتصال تأكيد</span></div>
-                        <div class="stat-box" style="border-color:var(--neon-orange);"><strong>🧤</strong><span>كفوف + غطاء</span></div>
+                        <div class="stat-box" style="border-color:var(--neon-orange);"><strong>⚡</strong><span>شغل سريع وإتقان</span></div>
                         <div class="stat-box" style="border-color:var(--neon-orange);"><strong>🧹</strong><span>تنظيف ختامي</span></div>
+                    </div>
+
+                    <div class="list-box list-allowed">
+                        <h4><i class="fa-solid fa-check-circle"></i> المسموح والمطلوب</h4>
+                        <ul>
+                            <li><strong>الشغل بالمزرف والبراغي (الدريل) فقط، يمنع استخدام البسامير لضمان متانة الأثاث.</strong></li>
+                            <li>السرعة والإتقان في العمل بدون تضييع وقت الزبون.</li>
+                            <li>المحافظة على أرضية بيت الزبون ووضع كرتون تحت العدة.</li>
+                            <li>تنظيف المكان بعد الانتهاء تماماً (مسح بصمات، جمع نايلون).</li>
+                            <li>إبلاغ الإدارة فوراً وبدون جدال عند وجود أي نقص.</li>
+                        </ul>
                     </div>
 
                     <div class="list-box list-forbidden">
                         <h4><i class="fa-solid fa-ban"></i> الممنوع — فصل فوري</h4>
                         <ul>
-                            <li>طلب إكرامية أو التلميح لها</li>
-                            <li>التدخين داخل منزل الزبون أو تشغيل أغاني</li>
-                            <li>الدخول لغرف غير مكان الشغل أو التصوير بدون إذن</li>
-                            <li>الجدال مع الزبون — أي مشكلة حوّلها للإدارة</li>
+                            <li>طلب إكرامية (بخشيش) أو التلميح لها.</li>
+                            <li>التدخين داخل منزل الزبون أو تشغيل أغاني بصوت عالٍ.</li>
+                            <li>الدخول لغرف غير مكان الشغل أو تصوير البيت بدون إذن.</li>
+                            <li>الجدال مع الزبون — أي مشكلة للإدارة فوراً.</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="glass-card">
-                    <div class="scenario-title" style="color:var(--neon-orange);"><i class="fa-solid fa-list-ol"></i> بروتوكول التركيب</div>
+                    <div class="scenario-title" style="color:var(--neon-orange); border-color:var(--neon-orange);"><i class="fa-solid fa-list-ol"></i> بروتوكول التركيب الميداني</div>
                     <div class="system-grid">
-                        <div class="system-item" style="border-color:var(--neon-orange);"><div class="letter">١</div><div class="desc"><p>اتصال تأكيد + تشييك العدة قبل الخروج</p></div></div>
-                        <div class="system-item" style="border-color:var(--neon-orange);"><div class="letter">٢</div><div class="desc"><p>كرتون على الأرضية + غطاء الحذاء عند الدخول</p></div></div>
-                        <div class="system-item" style="border-color:var(--neon-orange);"><div class="letter">٣</div><div class="desc"><p>مسح البصمات + جمع النايلون + تنظيف كامل</p></div></div>
+                        <div class="system-item" style="border-color:var(--neon-orange);"><div class="letter">١</div><div class="desc"><p>اتصال تأكيد + تشييك العدة (البراغي والمزرف) قبل الخروج.</p></div></div>
+                        <div class="system-item" style="border-color:var(--neon-orange);"><div class="letter">٢</div><div class="desc"><p>كرتون على الأرضية + غطاء حذاء (إن لزم) عند الدخول.</p></div></div>
+                        <div class="system-item" style="border-color:var(--neon-orange);"><div class="letter">٣</div><div class="desc"><p>شغل صامت، سريع ومتقن — بدون موبايل أو كلام زائد.</p></div></div>
+                        <div class="system-item" style="border-color:var(--neon-orange);"><div class="letter">٤</div><div class="desc"><p>مسح البصمات + جمع النايلون + تنظيف كامل.</p></div></div>
+                        <div class="system-item" style="border-color:var(--neon-orange);"><div class="letter">٥</div><div class="desc"><p>شرح طريقة الفتح والغلق للزبون.</p></div></div>
                     </div>
 
-                    <div class="bubble-content">
-                        <div class="lang-title">عند الانتهاء</div>
-                        <div class="ku-text">ئاڤا تەرکیب تەمام بووە — ئایا ئاڤا چۆن بکار بینیت؟</div>
-                        <div>التركيب انتهى — هل أشرح لك كيفية الاستخدام؟</div>
+                    <div class="bubble-content" style="margin-top:15px;">
+                        <div class="lang-title">عند الوصول / والانتهاء</div>
+                        <div class="ku-text">سلاڤ، ئەز ژ ئاڤانێ مە هاتمە بو تەرکیبا ئەو پارچێ. / ئاڤا تەرکیب تەمام بووە.</div>
+                        <div>أهلاً، جئت من إيفان للتركيب. / التركيب انتهى، هل أشرح لك كيفية الاستخدام؟</div>
                     </div>
                 </div>
             </div>
@@ -402,35 +464,43 @@
         <div class="dept-section" id="drivers">
             <div class="dept-header dept-drivers">
                 <i class="fa-solid fa-truck-fast"></i>
-                <h3>قسم السائقين <span>Drivers & Delivery - صفر ضرر + صفر تأخير.</span></h3>
+                <h3 style="color:var(--neon-green);">قسم السائقين <span>Drivers & Delivery - صفر ضرر + صفر تأخير.</span></h3>
             </div>
             
             <div class="grid-cards">
                 <div class="glass-card">
                     <div class="list-box list-allowed">
-                        <h4><i class="fa-solid fa-check-circle"></i> المسموح</h4>
+                        <h4><i class="fa-solid fa-check-circle"></i> المسموح والمطلوب</h4>
                         <ul>
-                            <li>التغليف الجيد قبل الشحن دائماً</li>
-                            <li>ترتيب القطع داخل المركبة بأمان</li>
-                            <li>إبلاغ الإدارة بأي عطل فوراً</li>
+                            <li>فحص الزيت والإطارات والنظافة يومياً.</li>
+                            <li>التغليف الجيد قبل الشحن دائماً (فلين + نايلون فقاعي + بطانية).</li>
+                            <li>ترتيب القطع داخل المركبة بأمان والتأكد من استقرار الحمولة.</li>
+                            <li>الالتزام بقواعد المرور والسرعة الآمنة.</li>
                         </ul>
                     </div>
                     <div class="list-box list-forbidden">
                         <h4><i class="fa-solid fa-ban"></i> الممنوع</h4>
                         <ul>
-                            <li>رمي البضاعة أو السحب العشوائي</li>
-                            <li>السرعة المبالغة على حساب الأمان</li>
-                            <li>البقاء بالسيارة وقت التحميل (يجب المشاركة)</li>
+                            <li>التسليم أو الخروج بدون وصل رسمي.</li>
+                            <li>رمي البضاعة أو السحب العشوائي.</li>
+                            <li>التحميل فوق طاقة السيارة أو ترك القطع غير ثابتة.</li>
+                            <li>البقاء بالسيارة وقت التحميل (يجب المشاركة مع العمال).</li>
+                            <li>تصوير المخزن أو البضاعة ونشرها.</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="glass-card">
-                    <div class="scenario-title" style="color:var(--neon-green);"><i class="fa-solid fa-box-check"></i> نصوص عند التسليم</div>
+                    <div class="scenario-title" style="color:var(--neon-green); border-color:var(--neon-green);"><i class="fa-solid fa-box-check"></i> نصوص عند التسليم</div>
                     <div class="bubble-content">
-                        <div class="lang-title">تأكيد الموعد</div>
+                        <div class="lang-title">تأكيد الموعد (قبل الوصول)</div>
                         <div class="ku-text">سلاڤ، ئەز لە ئاڤانێ مە — دەوری نزیک رسیدم بگیرم.</div>
-                        <div>أهلاً، من إيفان — تقريباً أصل خلال دقائق.</div>
+                        <div>أهلاً عيني، إحنا من إيفان، تقريباً نصل خلال دقائق، ممكن العنوان بالضبط؟</div>
+                    </div>
+                    <div class="bubble-content">
+                        <div class="lang-title">عند التسليم للزبون</div>
+                        <div class="ku-text">پارچە سالم گیهاند — دخازم تۆ چاو پێ بکی.</div>
+                        <div>القطعة وصلت سليمة عيني، تفضل شيك عليها وتأكد. بالعافية!</div>
                     </div>
                     <div class="golden-rule" style="border-color:var(--neon-green);">
                         <i class="fa-solid fa-triangle-exclamation" style="color:var(--neon-green);"></i>
@@ -443,18 +513,18 @@
         <div class="dept-section" id="warehouse">
             <div class="dept-header dept-warehouse">
                 <i class="fa-solid fa-boxes-stacked"></i>
-                <h3>قسم المناولة والمخازن <span>Warehouse - المخزن المنظم = مبيعات أسرع.</span></h3>
+                <h3 style="color:var(--neon-red);">قسم المناولة والمخازن <span>Warehouse & Porters - المخزن المنظم = مبيعات أسرع.</span></h3>
             </div>
             
             <div class="grid-cards">
                 <div class="glass-card">
-                    <div class="scenario-title" style="color:var(--neon-red);"><i class="fa-solid fa-layer-group"></i> نظام 5S الياباني للمخازن</div>
+                    <div class="scenario-title" style="color:var(--neon-red); border-color:var(--neon-red);"><i class="fa-solid fa-layer-group"></i> نظام 5S الياباني للمخازن</div>
                     <div class="system-grid">
-                        <div class="system-item" style="border-color:var(--neon-red);"><div class="letter">1S</div><div class="desc"><h5>Sort (تصنيف)</h5><p>شيل كل شيء زايد ومو ضروري</p></div></div>
-                        <div class="system-item" style="border-color:var(--neon-red);"><div class="letter">2S</div><div class="desc"><h5>Set in Order (ترتيب)</h5><p>كل شيء له مكان ثابت ومعروف</p></div></div>
-                        <div class="system-item" style="border-color:var(--neon-red);"><div class="letter">3S</div><div class="desc"><h5>Shine (تنظيف)</h5><p>أرضية نظيفة وقطع بدون غبار</p></div></div>
-                        <div class="system-item" style="border-color:var(--neon-red);"><div class="letter">4S</div><div class="desc"><h5>Standardize (معيار)</h5><p>صور للمكان المثالي للقياس عليه</p></div></div>
-                        <div class="system-item" style="border-color:var(--neon-red);"><div class="letter">5S</div><div class="desc"><h5>Sustain (استدامة)</h5><p>تفتيش أسبوعي للمحافظة على النظام</p></div></div>
+                        <div class="system-item" style="border-color:var(--neon-red);"><div class="letter">1S</div><div class="desc"><h5>Sort (تصنيف)</h5><p>شيل كل شيء زايد ومو ضروري.</p></div></div>
+                        <div class="system-item" style="border-color:var(--neon-red);"><div class="letter">2S</div><div class="desc"><h5>Set in Order (ترتيب)</h5><p>كل شيء له مكان ثابت ومعروف.</p></div></div>
+                        <div class="system-item" style="border-color:var(--neon-red);"><div class="letter">3S</div><div class="desc"><h5>Shine (تنظيف)</h5><p>أرضية نظيفة وقطع بدون غبار.</p></div></div>
+                        <div class="system-item" style="border-color:var(--neon-red);"><div class="letter">4S</div><div class="desc"><h5>Standardize (معيار)</h5><p>صور للمكان المثالي للقياس عليه.</p></div></div>
+                        <div class="system-item" style="border-color:var(--neon-red);"><div class="letter">5S</div><div class="desc"><h5>Sustain (استدامة)</h5><p>تفتيش أسبوعي للمحافظة على النظام.</p></div></div>
                     </div>
                 </div>
 
@@ -462,14 +532,23 @@
                     <div class="list-box list-forbidden">
                         <h4><i class="fa-solid fa-ban"></i> الممنوع</h4>
                         <ul>
-                            <li>إخراج أي قطعة اعتماداً على الذاكرة</li>
-                            <li>التسليم الشفهي غير الموثق</li>
-                            <li>نقل قطعة ثقيلة بمفردك</li>
+                            <li>إخراج أي قطعة (مهما صغرت) اعتماداً على الذاكرة بدون وصل.</li>
+                            <li>التسليم الشفهي غير الموثق.</li>
+                            <li>الفوضى والخلط بين القطع المتشابهة.</li>
+                            <li>ترك قطع بدون تسمية أو تعريف.</li>
+                            <li>نقل قطعة ثقيلة بمفردك (استخدم أدوات الحمل أو اطلب المساعدة).</li>
                         </ul>
                     </div>
                     <div class="golden-rule" style="border-color:var(--neon-red);">
                         <i class="fa-solid fa-receipt" style="color:var(--neon-red);"></i>
                         <p>📦 قانون الوصل: لا تطلع مسمار بدون وصل رسمي موقع — الذاكرة ممنوعة في المخزن.</p>
+                    </div>
+
+                    <div class="scenario-title" style="margin-top:20px; color:var(--neon-red); border-color:var(--neon-red);"><i class="fa-solid fa-people-carry-box"></i> عمال المناولة (عند الزبون)</div>
+                    <div class="bubble-content">
+                        <div class="lang-title">دخول المنزل وتنزيل البضاعة</div>
+                        <div class="ku-text">یا اللە، سلاڤ و ڕێز، دەستویرێ بدەن... وە دڤێت کەلوپەلان ل کیژ ژوورێ دابنێین؟</div>
+                        <div>يا الله، السلام عليكم، رخصة عيني... وين تحبون نصفط الأغراض وبأي غرفة؟ تأمرون إحنا ننفذ.</div>
                     </div>
                 </div>
             </div>
@@ -478,7 +557,7 @@
         <div class="dept-section" id="cleaners">
             <div class="dept-header dept-cleaners">
                 <i class="fa-solid fa-mug-hot"></i>
-                <h3>قسم التنظيف والضيافة <span>Cleaning - النظافة ليست خدمة ثانوية، هي جزء من التسويق.</span></h3>
+                <h3 style="color:var(--neon-yellow);">قسم التنظيف والضيافة <span>Cleaning - النظافة ليست خدمة ثانوية، هي جزء من التسويق.</span></h3>
             </div>
             
             <div class="grid-cards">
@@ -489,23 +568,41 @@
                         <div class="stat-box" style="border-color:var(--neon-yellow);"><strong>🚻</strong><span>حمامات كل ساعتين</span></div>
                     </div>
 
-                    <div class="list-box list-forbidden" style="margin-top:20px;">
+                    <div class="list-box list-allowed" style="margin-top:20px;">
+                        <h4><i class="fa-solid fa-check-circle"></i> المسموح والمطلوب</h4>
+                        <ul>
+                            <li>مسح الطاولات والزجاج والمرايا يومياً.</li>
+                            <li>تقديم الضيافة بابتسامة خلال 3 دقائق.</li>
+                            <li>تشييك الحمامات كل ساعتين + معطر.</li>
+                            <li>الإجابة على الزبون أو توجيهه للمبيعات بلباقة.</li>
+                        </ul>
+                    </div>
+
+                    <div class="list-box list-forbidden">
                         <h4><i class="fa-solid fa-ban"></i> الممنوع</h4>
                         <ul>
-                            <li>ترك الأكواب على الأثاث المعروض</li>
-                            <li>الجلوس على غرف العرض</li>
-                            <li>استخدام مكنسة أمام الزبائن — فوطة فقط</li>
-                            <li>التعامل بفتور مع الزبون</li>
+                            <li>ترك الأكواب الفارغة على الأثاث المعروض.</li>
+                            <li>الجلوس على غرف العرض.</li>
+                            <li>التكلم بصوت عالٍ أو الضحك المبالغ.</li>
+                            <li>استخدام مكنسة أمام الزبائن — فوطة فقط لتجنب الغبار.</li>
+                            <li>إهمال الغبار أو التعامل بفتور مع الزبون.</li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="glass-card">
-                    <div class="scenario-title" style="color:var(--neon-yellow);"><i class="fa-solid fa-calendar-check"></i> جدول التنظيف اليومي</div>
+                    <div class="scenario-title" style="color:var(--neon-yellow); border-color:var(--neon-yellow);"><i class="fa-solid fa-calendar-check"></i> جدول التنظيف اليومي</div>
                     <div class="system-grid">
-                        <div class="system-item" style="border-color:var(--neon-yellow);"><div class="letter"><i class="fa-regular fa-clock" style="font-size:18px;"></i></div><div class="desc"><h5>قبل الساعة 10</h5><p>مسح كامل للطاولات + الزجاج + الأرضيات</p></div></div>
-                        <div class="system-item" style="border-color:var(--neon-yellow);"><div class="letter"><i class="fa-solid fa-restroom" style="font-size:18px;"></i></div><div class="desc"><h5>كل ساعتين</h5><p>تشييك الحمامات + معطر + مناديل</p></div></div>
-                        <div class="system-item" style="border-color:var(--neon-yellow);"><div class="letter"><i class="fa-solid fa-spray-can-sparkles" style="font-size:18px;"></i></div><div class="desc"><h5>مستمر</h5><p>إزالة الغبار فور ظهوره</p></div></div>
+                        <div class="system-item" style="border-color:var(--neon-yellow);"><div class="letter"><i class="fa-regular fa-clock" style="font-size:18px;"></i></div><div class="desc"><h5>قبل الساعة 10</h5><p>مسح كامل للطاولات + الزجاج + الأرضيات.</p></div></div>
+                        <div class="system-item" style="border-color:var(--neon-yellow);"><div class="letter"><i class="fa-solid fa-restroom" style="font-size:18px;"></i></div><div class="desc"><h5>كل ساعتين</h5><p>تشييك الحمامات + معطر + مناديل.</p></div></div>
+                        <div class="system-item" style="border-color:var(--neon-yellow);"><div class="letter"><i class="fa-solid fa-spray-can-sparkles" style="font-size:18px;"></i></div><div class="desc"><h5>مستمر</h5><p>إزالة الغبار فور ظهوره — لا تتركه يتراكم.</p></div></div>
+                    </div>
+
+                    <div class="scenario-title" style="margin-top:20px; color:var(--neon-yellow); border-color:var(--neon-yellow);"><i class="fa-solid fa-coffee"></i> بروتوكول الضيافة</div>
+                    <div class="bubble-content">
+                        <div class="lang-title">تقديم الضيافة للزبون</div>
+                        <div class="ku-text">سەرچاڤان فەرموون، دێ چ ڤەخۆن؟ چایەکێ یان قەهوەیەکێ؟</div>
+                        <div>أهلاً وسهلاً نورتونا تفضلوا استريحوا، تحبون تشربون شاي لو قهوة؟</div>
                     </div>
                     
                     <div class="golden-rule" style="border-color:var(--neon-yellow);">
