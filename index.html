@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>معرض إيفان | بروتوكول الردود الاحترافي</title>
+    <title>معرض إيفان | بروتوكول التشغيل الشامل</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -61,212 +61,140 @@
 
         #particles-canvas {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; pointer-events: none;
         }
 
         ::-webkit-scrollbar { width: 8px; }
         ::-webkit-scrollbar-track { background: var(--bg-color); }
         ::-webkit-scrollbar-thumb { background: var(--neon-blue); border-radius: 10px; }
 
-        @keyframes pulse-glow {
-            0% { box-shadow: 0 0 10px var(--neon-blue); }
-            50% { box-shadow: 0 0 25px var(--neon-purple); }
-            100% { box-shadow: 0 0 10px var(--neon-blue); }
-        }
-
-        /* شريط التنقل والشعار */
+        /* شريط التنقل */
         header {
             position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
+            top: 0; width: 100%; z-index: 1000;
             background: var(--glass-bg);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--glass-border);
             padding: 10px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            display: flex; justify-content: space-between; align-items: center;
         }
 
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
+        .brand { display: flex; align-items: center; gap: 15px; }
         .brand-img {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: 2px solid var(--neon-red); /* لون يتناسق مع النقطة الحمراء بشعارك */
-            object-fit: contain;
-            background: #fff;
-            padding: 2px;
+            width: 45px; height: 45px; border-radius: 50%;
+            border: 2px solid var(--neon-red); object-fit: contain; background: #fff; padding: 2px;
         }
-
         .brand h1 {
-            font-size: 24px;
-            font-weight: 800;
-            letter-spacing: 1px;
+            font-size: 22px; font-weight: 900; letter-spacing: 1px;
             background: linear-gradient(90deg, var(--neon-red), var(--text-main));
-            -webkit-background-clip: text;
-            color: transparent;
+            -webkit-background-clip: text; color: transparent; text-transform: uppercase;
         }
 
         .btn-theme {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid var(--glass-border);
-            color: var(--text-main);
-            padding: 8px 18px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            background: rgba(255, 255, 255, 0.1); border: 1px solid var(--glass-border);
+            color: var(--text-main); padding: 8px 18px; border-radius: 20px;
+            cursor: pointer; font-size: 14px; font-weight: bold; display: flex; align-items: center; gap: 8px;
             transition: 0.3s;
         }
-        .btn-theme:hover {
-            background: var(--neon-blue);
-            color: #fff;
+        .btn-theme:hover { background: var(--neon-blue); color: #fff; }
+
+        /* القائمة الجانبية (Sidebar) */
+        aside {
+            width: 280px; background: var(--glass-bg); backdrop-filter: blur(20px);
+            border-left: 1px solid var(--glass-border); position: fixed; right: 0; top: 65px;
+            height: calc(100vh - 65px); padding: 20px 10px; overflow-y: auto; z-index: 999;
+        }
+        
+        aside ul { list-style: none; }
+        aside ul li { margin-bottom: 5px; }
+        aside ul li a {
+            display: flex; flex-direction: column; padding: 12px 15px;
+            color: var(--text-main); text-decoration: none; border-radius: 12px; transition: 0.3s;
+        }
+        aside ul li a:hover { background: rgba(255, 255, 255, 0.1); transform: translateX(-5px); border-right: 3px solid var(--neon-blue); }
+        aside ul li a strong { font-size: 15px; color: var(--neon-blue); margin-bottom: 3px; display: flex; align-items: center; gap: 8px; }
+        aside ul li a span { font-size: 12px; color: var(--text-muted); }
+
+        /* المحتوى الرئيسي */
+        main {
+            margin-right: 280px; padding: 100px 30px 60px;
         }
 
-        /* الواجهة */
-        .hero {
-            padding: 130px 20px 60px;
-            text-align: center;
-        }
+        .hero { text-align: center; margin-bottom: 60px; }
+        .hero h2 { font-size: 3em; font-weight: 900; margin-bottom: 15px; text-shadow: 0 0 15px rgba(0, 210, 255, 0.3); }
+        .hero p { font-size: 1.1em; color: var(--text-muted); max-width: 700px; margin: 0 auto; }
 
-        .hero h2 {
-            font-size: 2.8em;
-            font-weight: 900;
-            margin-bottom: 15px;
-        }
-
-        .hero p {
-            font-size: 1.1em;
-            color: var(--text-muted);
-            max-width: 700px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 0 20px 80px;
-        }
-
-        .dept-section {
-            margin-bottom: 60px;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
+        .dept-section { margin-bottom: 60px; opacity: 0; transform: translateY(30px); transition: 0.6s ease; }
         .dept-section.visible { opacity: 1; transform: translateY(0); }
 
         .dept-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 25px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid var(--glass-border);
+            display: flex; align-items: center; gap: 15px; margin-bottom: 25px;
+            padding-bottom: 10px; border-bottom: 1px solid var(--glass-border);
         }
+        .dept-header i { font-size: 28px; padding: 12px; background: rgba(255, 255, 255, 0.05); border-radius: 15px; }
+        .dept-header h3 { font-size: 1.8em; font-weight: 800; display: flex; flex-direction: column; }
+        .dept-header h3 span { font-size: 14px; color: var(--text-muted); font-weight: 500; margin-top: 5px; }
 
-        .dept-header i {
-            font-size: 30px;
-            padding: 12px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-        }
-
-        .dept-header h3 { font-size: 2em; font-weight: 800; }
-
-        .grid-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 25px;
-        }
+        .grid-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; }
 
         .glass-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: var(--card-radius);
-            padding: 30px;
-            box-shadow: var(--glass-shadow);
-            transition: 0.4s;
+            background: var(--glass-bg); backdrop-filter: blur(20px); border: 1px solid var(--glass-border);
+            border-radius: var(--card-radius); padding: 25px; box-shadow: var(--glass-shadow); transition: 0.4s;
         }
+        .glass-card:hover { transform: translateY(-5px); border-color: var(--neon-blue); }
 
-        .glass-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--neon-blue);
-        }
+        /* القوائم (مسموح / ممنوع) */
+        .list-box { margin-bottom: 20px; }
+        .list-box h4 { font-size: 16px; font-weight: 800; margin-bottom: 15px; display: inline-block; padding: 5px 15px; border-radius: 8px; }
+        .list-allowed h4 { background: rgba(16, 185, 129, 0.2); color: var(--neon-green); }
+        .list-forbidden h4 { background: rgba(239, 68, 68, 0.2); color: var(--neon-red); }
+        
+        .list-box ul { list-style: none; padding-right: 10px; }
+        .list-box ul li { position: relative; padding-right: 20px; margin-bottom: 10px; font-size: 14px; font-weight: 500; }
+        .list-allowed ul li::before { content: '✓'; color: var(--neon-green); position: absolute; right: 0; font-weight: bold; }
+        .list-forbidden ul li::before { content: '✗'; color: var(--neon-red); position: absolute; right: 0; font-weight: bold; }
 
-        .scenario-title {
-            font-size: 1.1em;
-            font-weight: 800;
-            margin-bottom: 20px;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            padding: 6px 15px;
-            border-radius: 10px;
-            background: rgba(0, 0, 0, 0.15);
-            border-right: 4px solid;
-        }
+        /* مربعات الإحصائيات (Stats) */
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px; text-align: center; }
+        .stat-box { background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; border: 1px solid var(--glass-border); }
+        .stat-box strong { display: block; font-size: 24px; color: var(--neon-blue); margin-bottom: 5px; }
+        .stat-box span { font-size: 12px; color: var(--text-muted); }
 
-        [data-theme="light"] .scenario-title { background: rgba(0, 0, 0, 0.05); }
+        /* صناديق الأنظمة (SPIN, 5S) */
+        .system-grid { display: grid; grid-template-columns: 1fr; gap: 10px; margin-bottom: 20px; }
+        .system-item { background: rgba(0,0,0,0.2); padding: 12px; border-radius: 10px; display: flex; align-items: center; gap: 15px; border-right: 3px solid var(--neon-purple); }
+        [data-theme="light"] .system-item { background: rgba(0,0,0,0.05); }
+        .system-item .letter { font-size: 24px; font-weight: 900; color: var(--neon-purple); width: 40px; text-align: center; }
+        .system-item .desc h5 { font-size: 14px; margin-bottom: 3px; }
+        .system-item .desc p { font-size: 12px; color: var(--text-muted); }
 
-        .chat-bubble { margin-bottom: 20px; }
-
-        .lang-tag {
-            font-size: 12px;
-            font-weight: 800;
-            margin-bottom: 6px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .bubble-content {
-            background: rgba(0, 0, 0, 0.25);
-            padding: 15px 20px;
-            border-radius: 14px;
-            border-bottom-right-radius: 0;
-            font-size: 1.05em; /* تصغير الخط ليكون أرتب */
-            line-height: 1.6;
-            font-weight: 500;
-            border: 1px solid rgba(255,255,255,0.03);
-            transition: 0.3s;
-        }
-
+        /* نصوص الردود (Chat Bubbles) */
+        .scenario-title { font-size: 14px; font-weight: 800; margin-bottom: 15px; color: var(--neon-blue); display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px; }
+        .bubble-content { background: rgba(0, 0, 0, 0.25); padding: 15px; border-radius: 12px; border-bottom-right-radius: 0; font-size: 14px; line-height: 1.6; font-weight: 500; border: 1px solid rgba(255,255,255,0.03); margin-bottom: 10px; }
         [data-theme="light"] .bubble-content { background: #fff; border-color: rgba(0,0,0,0.08); }
+        .lang-title { font-size: 11px; font-weight: 800; color: var(--text-muted); margin-bottom: 5px; text-transform: uppercase; }
+        .ku-text { color: var(--neon-blue); font-weight: 700; }
 
-        .bubble-content:hover {
-            background: rgba(0, 0, 0, 0.4);
-            border-color: var(--neon-blue);
-        }
-        [data-theme="light"] .bubble-content:hover { background: #f8f9fa; }
+        /* قاعدة ذهبية أو ملاحظة */
+        .golden-rule { background: linear-gradient(135deg, rgba(234, 179, 8, 0.15), transparent); border: 1px solid var(--neon-yellow); text-align: center; padding: 20px; border-radius: 15px; margin-top: 20px; }
+        .golden-rule i { color: var(--neon-yellow); font-size: 24px; margin-bottom: 10px; }
+        .golden-rule p { font-size: 14px; font-weight: 700; line-height: 1.6; }
 
-        .dept-marketing { color: var(--neon-purple); } .dept-marketing .scenario-title { border-color: var(--neon-purple); }
-        .dept-sales { color: var(--neon-blue); } .dept-sales .scenario-title { border-color: var(--neon-blue); }
-        .dept-warehouse { color: var(--neon-orange); } .dept-warehouse .scenario-title { border-color: var(--neon-orange); }
-        .dept-drivers { color: var(--neon-green); } .dept-drivers .scenario-title { border-color: var(--neon-green); }
-        .dept-porters { color: var(--neon-red); } .dept-porters .scenario-title { border-color: var(--neon-red); }
-        .dept-cleaners { color: var(--neon-yellow); } .dept-cleaners .scenario-title { border-color: var(--neon-yellow); }
+        /* Footer */
+        footer { text-align: center; padding: 30px; margin-top: 50px; border-top: 1px solid var(--glass-border); color: var(--text-muted); font-size: 13px; font-weight: bold; }
 
-        @media (max-width: 768px) {
-            .hero h2 { font-size: 2em; }
-            .dept-header h3 { font-size: 1.5em; }
+        /* ألوان الأقسام */
+        .dept-sales i { color: var(--neon-blue); border-color: var(--neon-blue); }
+        .dept-marketing i { color: var(--neon-purple); border-color: var(--neon-purple); }
+        .dept-carpentry i { color: var(--neon-orange); border-color: var(--neon-orange); }
+        .dept-drivers i { color: var(--neon-green); border-color: var(--neon-green); }
+        .dept-warehouse i { color: var(--neon-red); border-color: var(--neon-red); }
+        .dept-cleaners i { color: var(--neon-yellow); border-color: var(--neon-yellow); }
+
+        @media (max-width: 992px) {
+            aside { display: none; }
+            main { margin-right: 0; padding: 100px 20px 60px; }
             .grid-cards { grid-template-columns: 1fr; }
         }
     </style>
@@ -277,136 +205,195 @@
 
     <header>
         <div class="brand">
-            <img src="logo.png" alt="Ivan Show" class="brand-img" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjIwIiByPSIxNSIgZmlsbD0iI2Q2MzAzMSIvPjx0ZXh0IHg9IjUwIiB5PSI4NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjcwIiBmb250LXdlaWdodD0iYm9sZCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZiI+aTwvdGV4dD48L3N2Zz4='">
+            <img src="logo.png" alt="Ivan Show" class="brand-img" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjIwIiByPSIxNSIgZmlsbD0iI2VmNDQ0NCIvPjx0ZXh0IHg9IjUwIiB5PSI4NSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjcwIiBmb250LXdlaWdodD0iYm9sZCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmZiI+aTwvdGV4dD48L3N2Zz4='">
             <h1>Ivan Show</h1>
         </div>
-        <div class="controls">
-            <button class="btn-theme" id="themeToggle"><i class="fa-solid fa-moon"></i> <span>المود</span></button>
-        </div>
+        <button class="btn-theme" id="themeToggle"><i class="fa-solid fa-moon"></i> <span>المود</span></button>
     </header>
 
-    <section class="hero">
-        <h2>بروتوكول الردود الاحترافية</h2>
-        <p>نصوص واضحة، محترمة، ومقنعة. تعكس رقي معرض إيفان وتضمن راحة الزبون من أول تواصل إلى ما بعد البيع.</p>
-    </section>
+    <aside>
+        <ul>
+            <li><a href="#sales"><strong><i class="fa-solid fa-handshake"></i> قسم المبيعات</strong><span>متابعة الزبائن والعروض</span></a></li>
+            <li><a href="#marketing"><strong><i class="fa-solid fa-video"></i> قسم التسويق والإعلام</strong><span>المحتوى والترويج</span></a></li>
+            <li><a href="#carpentry"><strong><i class="fa-solid fa-hammer"></i> قسم النجارة والتركيب</strong><span>التصنيع والصيانة</span></a></li>
+            <li><a href="#drivers"><strong><i class="fa-solid fa-truck-fast"></i> قسم السائقين</strong><span>التوصيل والنقل</span></a></li>
+            <li><a href="#warehouse"><strong><i class="fa-solid fa-boxes-stacked"></i> قسم المناولة والمخازن</strong><span>تحميل وتنزيل وتخزين</span></a></li>
+            <li><a href="#cleaners"><strong><i class="fa-solid fa-mug-hot"></i> قسم التنظيف والضيافة</strong><span>النظافة والاستقبال</span></a></li>
+            <li><a href="#"><strong><i class="fa-solid fa-scale-balanced"></i> سياسة المعرض الشاملة</strong><span>الشكاوى والملاحظات</span></a></li>
+        </ul>
+    </aside>
 
-    <div class="container">
-
-        <div class="dept-section" id="marketing">
-            <div class="dept-header dept-marketing">
-                <i class="fa-solid fa-video"></i>
-                <h3>1. قسم التسويق (الفيديوهات)</h3>
-            </div>
-            <div class="grid-cards">
-                <div class="glass-card">
-                    <div class="scenario-title"><i class="fa-solid fa-play"></i> بداية الفيديو (جذب الانتباه)</div>
-                    <div class="chat-bubble">
-                        <div class="lang-tag" style="color:var(--neon-purple);"><i class="fa-solid fa-microphone"></i> عراقي محترم (تسويقي)</div>
-                        <div class="bubble-content">
-                            "أهلاً وسهلاً بكم متابعين معرض إيفان الكرام، اليوم وفرنالكم قطعة مميزة جداً، تعالوا ويانا نشوف تفاصيلها اللي أكيد راح تعجبكم."
-                        </div>
-                    </div>
-                    <div class="chat-bubble">
-                        <div class="lang-tag" style="color:var(--neon-purple);"><i class="fa-solid fa-microphone"></i> كوردي باديني</div>
-                        <div class="bubble-content">
-                            "سلاڤ و ڕێز بۆ هەمی کەس و کارێن پێشانگەها ئاڤان... ئەڤرۆ مە پارچەیەکا گەلەک تایبەت بۆ وە ئینایە، وەرن دا پێکڤە ببینین."
-                        </div>
-                    </div>
-                </div>
-
-                <div class="glass-card">
-                    <div class="scenario-title"><i class="fa-solid fa-stop"></i> نهاية الفيديو (دعوة للتواصل)</div>
-                    <div class="chat-bubble">
-                        <div class="lang-tag" style="color:var(--neon-purple);"><i class="fa-solid fa-microphone"></i> عراقي محترم (تسويقي)</div>
-                        <div class="bubble-content">
-                            "إخواني لا تفوتون الفرصة، الكمية محدودة. راسلونا على الصفحة أو نورونا بزيارتكم للمعرض، وأكيد راح نكون بخدمتكم."
-                        </div>
-                    </div>
-                    <div class="chat-bubble">
-                        <div class="lang-tag" style="color:var(--neon-purple);"><i class="fa-solid fa-microphone"></i> كوردي باديني</div>
-                        <div class="bubble-content">
-                            "هەڤالان دەلیڤێ ژ دەست خۆ نەکەن، هژمار یا کێمە! نامەیەکێ بۆ پەیجی فرێکن یان سەرەدانا مە بکەن، ئەم د خزمەتا وە دانە."
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <main>
+        <div class="hero">
+            <h2>دليل التشغيل الاحترافي</h2>
+            <p>منهجية عمل متكاملة لأقسام معرض إيفان، تضمن تقديم أعلى مستويات الخدمة والراحة للزبون من لحظة دخوله حتى ما بعد البيع.</p>
         </div>
 
         <div class="dept-section" id="sales">
             <div class="dept-header dept-sales">
                 <i class="fa-solid fa-handshake"></i>
-                <h3>2. قسم المبيعات (داخل المعرض)</h3>
+                <h3>قسم المبيعات <span>Sales Department - فهم احتياج الزبون وتوجيهه للقطعة المناسبة وليس الأغلى.</span></h3>
             </div>
+            
             <div class="grid-cards">
                 <div class="glass-card">
-                    <div class="scenario-title"><i class="fa-solid fa-door-open"></i> استقبال الزبون بلباقة</div>
-                    <div class="chat-bubble">
-                        <div class="lang-tag" style="color:var(--neon-blue);"><i class="fa-solid fa-user-tie"></i> عراقي محترم</div>
-                        <div class="bubble-content">
-                            "أهلاً وسهلاً أخي العزيز، نورت المعرض. تفضل خذ راحتك وتفرج على الأقسام، وأي مساعدة أو استفسار إحنا حاضرين."
-                        </div>
+                    <div class="stats-grid">
+                        <div class="stat-box"><strong>٧</strong><span>طوابق للعرض</span></div>
+                        <div class="stat-box"><strong>٣</strong><span>أسئلة تشخيص</span></div>
+                        <div class="stat-box"><strong>٢</strong><span>خيار أقصى</span></div>
                     </div>
-                    <div class="chat-bubble">
-                        <div class="lang-tag" style="color:var(--neon-blue);"><i class="fa-solid fa-user-tie"></i> كوردي باديني</div>
-                        <div class="bubble-content">
-                            "ب خێر هاتن بۆ پێشانگەها ئاڤان، کەرەمکە دەمێ خۆ وەرگرە و تەمەشە بکە، ئەم ل نێزیکین بۆ هەر هاریکارییەکێ."
-                        </div>
+                    
+                    <div class="list-box list-allowed">
+                        <h4><i class="fa-solid fa-check-circle"></i> المسموح</h4>
+                        <ul>
+                            <li>سؤال الزبون عن المقاس، اللون، الميزانية</li>
+                            <li>عرض خيارين أو ثلاثة — لا أكثر</li>
+                            <li>شرح الفروقات بين القطع بوضوح</li>
+                            <li>اقتراح حلول عملية تناسب البيت والميزانية</li>
+                            <li>متابعة بواتساب بعد ساعتين إذا غادر بلا شراء</li>
+                            <li>توجيهه لطابق آخر إذا لم يجد ما يريد</li>
+                        </ul>
+                    </div>
+
+                    <div class="list-box list-forbidden">
+                        <h4><i class="fa-solid fa-ban"></i> الممنوع</h4>
+                        <ul>
+                            <li>الضغط على الزبون للشراء الفوري</li>
+                            <li>الحلفان بالله — الضمان الكتابي أقوى</li>
+                            <li>الإلحاح المزعج والمشي خلف الزبون</li>
+                            <li>تضخيم السعر قبل الخصم</li>
+                            <li>الكذب بشأن التوفر أو الحالة</li>
+                            <li>مقارنة المعرض بالمنافسين سلباً</li>
+                        </ul>
                     </div>
                 </div>
 
                 <div class="glass-card">
-                    <div class="scenario-title"><i class="fa-solid fa-check"></i> توديع الزبون (عند الشراء)</div>
-                    <div class="chat-bubble">
-                        <div class="lang-tag" style="color:var(--neon-blue);"><i class="fa-solid fa-user-tie"></i> عراقي محترم</div>
-                        <div class="bubble-content">
-                            "ألف مبروك، اختيار جداً موفق وذوق راقي. تتهنون بيها يا رب، وأي شي تحتاجوه مستقبلاً إحنا بخدمتكم."
-                        </div>
+                    <div class="scenario-title"><i class="fa-solid fa-brain"></i> منهجية البيع — SPIN</div>
+                    <div class="system-grid">
+                        <div class="system-item"><div class="letter">S</div><div class="desc"><h5>Situation (الموقف)</h5><p>شقة جديدة؟ غرفة نوم؟</p></div></div>
+                        <div class="system-item"><div class="letter">P</div><div class="desc"><h5>Problem (المشكلة)</h5><p>أكبر مشكلة بالقديم؟</p></div></div>
+                        <div class="system-item"><div class="letter">I</div><div class="desc"><h5>Implication (التأثير)</h5><p>لو طلع كبير الغرفة تضيق</p></div></div>
+                        <div class="system-item"><div class="letter">N</div><div class="desc"><h5>Need-payoff (الحل)</h5><p>الزاوية توفر متر كامل</p></div></div>
                     </div>
-                    <div class="chat-bubble">
-                        <div class="lang-tag" style="color:var(--neon-blue);"><i class="fa-solid fa-user-tie"></i> كوردي باديني</div>
-                        <div class="bubble-content">
-                            "هزار جاران پیرۆزە، هەلبژارتنەکا گەلەک باشە. هیڤیدارین ئەڤ پارچە مالا وە پڕی خۆشی بکەت، ئەم ل خزمەتا وەینە."
-                        </div>
-                    </div>
-                </div>
 
-                <div class="glass-card">
-                    <div class="scenario-title"><i class="fa-solid fa-heart"></i> توديع الزبون (بدون شراء)</div>
-                    <div class="chat-bubble">
-                        <div class="lang-tag" style="color:var(--neon-blue);"><i class="fa-solid fa-user-tie"></i> عراقي محترم</div>
-                        <div class="bubble-content">
-                            "شرفتونا بزيارتكم، أهلاً وسهلاً بكم بأي وقت، المعرض معرضكم وإحنا نتشرف بيكم دائماً."
-                        </div>
+                    <div class="scenario-title" style="margin-top:20px;"><i class="fa-solid fa-comments"></i> نصوص معتمدة (بادینی / عربي)</div>
+                    <div class="bubble-content">
+                        <div class="lang-title">الترحيب — Xweş hatî</div>
+                        <div class="ku-text">خوێش هاتی، چاوا دشێم هاریکاریا تە بکەم؟</div>
+                        <div>أهلاً وسهلاً، كيف أستطيع مساعدتك؟</div>
                     </div>
-                    <div class="chat-bubble">
-                        <div class="lang-tag" style="color:var(--neon-blue);"><i class="fa-solid fa-user-tie"></i> كوردي باديني</div>
-                        <div class="bubble-content">
-                            "سەرچاڤان، وە ئەم سەرفراز کرین. پێشانگەهـ یا وە یە ل هەر دەمەکێ، گەلەک ب خێر هاتن."
-                        </div>
+                    <div class="bubble-content">
+                        <div class="lang-title">التشخيص — Pirs</div>
+                        <div class="ku-text">قییاسا ژووری تە چەندە؟ رەنگا دیوارا چیە؟ بودجەی تە نزیکێ چەندە؟</div>
+                        <div>ما قياس الغرفة؟ لون الجدار؟ الميزانية التقريبية؟</div>
+                    </div>
+                    
+                    <div class="golden-rule">
+                        <i class="fa-solid fa-trophy"></i>
+                        <p>🎯 البيع الناجح هو الذي يبني ثقة طويلة المدى — لا صفقة سريعة فقط. الزبون يشتري راحة قرار وثقة.</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="dept-section" id="warehouse">
-            <div class="dept-header dept-warehouse">
-                <i class="fa-solid fa-boxes-stacked"></i>
-                <h3>3. قسم المخازن</h3>
+        <div class="dept-section" id="marketing">
+            <div class="dept-header dept-marketing">
+                <i class="fa-solid fa-video"></i>
+                <h3>قسم التسويق والإعلام <span>Marketing & Media - نبني اسماً لا نبيع صورة فقط.</span></h3>
             </div>
+            
             <div class="grid-cards">
                 <div class="glass-card">
-                    <div class="scenario-title"><i class="fa-solid fa-file-invoice"></i> طلب الوصل من الزبون</div>
-                    <div class="chat-bubble">
-                        <div class="lang-tag" style="color:var(--neon-orange);"><i class="fa-solid fa-clipboard-check"></i> عراقي محترم</div>
-                        <div class="bubble-content">
-                            "أهلاً بك أخي، بس زحمة عليك الوصل (الفاتورة) حتى نجهزلك أغراضك كاملة وبأسرع وقت إن شاء الله."
-                        </div>
+                    <div class="scenario-title" style="color:var(--neon-purple);"><i class="fa-solid fa-crown"></i> المبادئ الذهبية للقسم</div>
+                    <div class="system-grid">
+                        <div class="system-item" style="border-color:var(--neon-purple);"><div class="letter">🎯</div><div class="desc"><h5>الصدق قبل التجميل</h5><p>عرض العيب قبل الميزة في المستعمل</p></div></div>
+                        <div class="system-item" style="border-color:var(--neon-purple);"><div class="letter">✨</div><div class="desc"><h5>الوضوح قبل المبالغة</h5><p>رسالة واحدة لكل فيديو أو صورة</p></div></div>
+                        <div class="system-item" style="border-color:var(--neon-purple);"><div class="letter">👑</div><div class="desc"><h5>الهيبة قبل الضجيج</h5><p>بدون موسيقى صاخبة أو فلاتر مبالغة</p></div></div>
                     </div>
-                    <div class="chat-bubble">
-                        <div class="lang-tag" style="color:var(--neon-orange);"><i class="fa-solid fa-clipboard-check"></i> كوردي باديني</div>
-                        <div class="bubble-content">
-                            "سلاڤ برا ب خێرهاتی، بێ زەحمەت وەسلا خۆ بدە من دا زویترین دەم کەلوپەلێن تە ئامادە بکەم."
-                        </div>
+
+                    <div class="list-box list-allowed" style="margin-top:20px;">
+                        <h4><i class="fa-solid fa-check-circle"></i> المسموح</h4>
+                        <ul>
+                            <li>تصوير القطع بإضاءة واضحة ومريحة</li>
+                            <li>ذكر المقاس، اللون، الحالة، والسعر بصدق</li>
+                            <li>لهجة بادینی مع ترجمة عربية مختصرة</li>
+                            <li>نهاية بدعوة واحدة واضحة للتواصل</li>
+                        </ul>
+                    </div>
+                    <div class="list-box list-forbidden">
+                        <h4><i class="fa-solid fa-ban"></i> الممنوع</h4>
+                        <ul>
+                            <li>الموسيقى الصاخبة والفلاتر المبالغة</li>
+                            <li>السخرية من المنافسين أو وعود كاذبة (أرخص سعر)</li>
+                            <li>إخفاء عيوب القطع المستعملة</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="glass-card">
+                    <div class="scenario-title" style="color:var(--neon-purple);"><i class="fa-solid fa-chart-pie"></i> قاعدة المحتوى 70 · 20 · 10</div>
+                    <div class="stats-grid">
+                        <div class="stat-box" style="border-color:var(--neon-purple);"><strong>70%</strong><span>تعليمي (كيف تختار/تقيس)</span></div>
+                        <div class="stat-box" style="border-color:var(--neon-purple);"><strong>20%</strong><span>عرض احترافي للقطع</span></div>
+                        <div class="stat-box" style="border-color:var(--neon-purple);"><strong>10%</strong><span>بيع مباشر وعروض</span></div>
+                    </div>
+
+                    <div class="scenario-title" style="margin-top:20px; color:var(--neon-purple);"><i class="fa-solid fa-comment-dots"></i> نصوص معتمدة</div>
+                    <div class="bubble-content">
+                        <div class="lang-title">خطاف الفيديو — أول 3 ثواني</div>
+                        <div class="ku-text">سلاڤ و رێز — ئەز ژ پێشانگەها ئاڤان وەرن ڤێ پارچێ پێکڤە ببینین.</div>
+                        <div>تحية واحترام — من معرض إيفان، لنرى هذه القطعة معاً.</div>
+                    </div>
+                    <div class="bubble-content">
+                        <div class="lang-title">القطعة مباعة (في الرسائل)</div>
+                        <div>نفدت — بس عندنا بديل أقوى بنفس السعر، تحب أشوفله معك؟ (لا تقل "نمابا برا ببورة" بل قدم البديل فوراً)</div>
+                    </div>
+                    <div class="bubble-content">
+                        <div class="lang-title">إغلاق المحادثة</div>
+                        <div>تحب أرسلك صور غرفة النوم اللي تطابق الكنب؟ (أغلق بسؤال مفتوح).</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dept-section" id="carpentry">
+            <div class="dept-header dept-carpentry">
+                <i class="fa-solid fa-hammer"></i>
+                <h3>قسم النجارة والتركيب <span>Carpentry - الفني آخر انطباع، إذا طلع مضبوط الزبون يصير مسوقاً مجانياً.</span></h3>
+            </div>
+            
+            <div class="grid-cards">
+                <div class="glass-card">
+                    <div class="stats-grid">
+                        <div class="stat-box" style="border-color:var(--neon-orange);"><strong>📞</strong><span>اتصال تأكيد</span></div>
+                        <div class="stat-box" style="border-color:var(--neon-orange);"><strong>🧤</strong><span>كفوف + غطاء</span></div>
+                        <div class="stat-box" style="border-color:var(--neon-orange);"><strong>🧹</strong><span>تنظيف ختامي</span></div>
+                    </div>
+
+                    <div class="list-box list-forbidden">
+                        <h4><i class="fa-solid fa-ban"></i> الممنوع — فصل فوري</h4>
+                        <ul>
+                            <li>طلب إكرامية أو التلميح لها</li>
+                            <li>التدخين داخل منزل الزبون أو تشغيل أغاني</li>
+                            <li>الدخول لغرف غير مكان الشغل أو التصوير بدون إذن</li>
+                            <li>الجدال مع الزبون — أي مشكلة حوّلها للإدارة</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="glass-card">
+                    <div class="scenario-title" style="color:var(--neon-orange);"><i class="fa-solid fa-list-ol"></i> بروتوكول التركيب</div>
+                    <div class="system-grid">
+                        <div class="system-item" style="border-color:var(--neon-orange);"><div class="letter">١</div><div class="desc"><p>اتصال تأكيد + تشييك العدة قبل الخروج</p></div></div>
+                        <div class="system-item" style="border-color:var(--neon-orange);"><div class="letter">٢</div><div class="desc"><p>كرتون على الأرضية + غطاء الحذاء عند الدخول</p></div></div>
+                        <div class="system-item" style="border-color:var(--neon-orange);"><div class="letter">٣</div><div class="desc"><p>مسح البصمات + جمع النايلون + تنظيف كامل</p></div></div>
+                    </div>
+
+                    <div class="bubble-content">
+                        <div class="lang-title">عند الانتهاء</div>
+                        <div class="ku-text">ئاڤا تەرکیب تەمام بووە — ئایا ئاڤا چۆن بکار بینیت؟</div>
+                        <div>التركيب انتهى — هل أشرح لك كيفية الاستخدام؟</div>
                     </div>
                 </div>
             </div>
@@ -415,46 +402,74 @@
         <div class="dept-section" id="drivers">
             <div class="dept-header dept-drivers">
                 <i class="fa-solid fa-truck-fast"></i>
-                <h3>4. فريق التوصيل (السواق)</h3>
+                <h3>قسم السائقين <span>Drivers & Delivery - صفر ضرر + صفر تأخير.</span></h3>
             </div>
+            
             <div class="grid-cards">
                 <div class="glass-card">
-                    <div class="scenario-title"><i class="fa-solid fa-phone"></i> الاتصال قبل الوصول</div>
-                    <div class="chat-bubble">
-                        <div class="lang-tag" style="color:var(--neon-green);"><i class="fa-solid fa-steering-wheel"></i> عراقي محترم</div>
-                        <div class="bubble-content">
-                            "السلام عليكم، إحنا فريق التوصيل من معرض إيفان، إحنا قريبين عليكم، ممكن العنوان والتفاصيل بالضبط؟"
-                        </div>
+                    <div class="list-box list-allowed">
+                        <h4><i class="fa-solid fa-check-circle"></i> المسموح</h4>
+                        <ul>
+                            <li>التغليف الجيد قبل الشحن دائماً</li>
+                            <li>ترتيب القطع داخل المركبة بأمان</li>
+                            <li>إبلاغ الإدارة بأي عطل فوراً</li>
+                        </ul>
                     </div>
-                    <div class="chat-bubble">
-                        <div class="lang-tag" style="color:var(--neon-green);"><i class="fa-solid fa-steering-wheel"></i> كوردي باديني</div>
-                        <div class="bubble-content">
-                            "سلاڤ برا، ئەز شۆفێرێ پێشانگەها ئاڤانم، ئەم یێن د ڕێکێ دا نێزیکی وە، بێ زەحمەت جهێ مالێ بۆ من دیارکە؟"
-                        </div>
+                    <div class="list-box list-forbidden">
+                        <h4><i class="fa-solid fa-ban"></i> الممنوع</h4>
+                        <ul>
+                            <li>رمي البضاعة أو السحب العشوائي</li>
+                            <li>السرعة المبالغة على حساب الأمان</li>
+                            <li>البقاء بالسيارة وقت التحميل (يجب المشاركة)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="glass-card">
+                    <div class="scenario-title" style="color:var(--neon-green);"><i class="fa-solid fa-box-check"></i> نصوص عند التسليم</div>
+                    <div class="bubble-content">
+                        <div class="lang-title">تأكيد الموعد</div>
+                        <div class="ku-text">سلاڤ، ئەز لە ئاڤانێ مە — دەوری نزیک رسیدم بگیرم.</div>
+                        <div>أهلاً، من إيفان — تقريباً أصل خلال دقائق.</div>
+                    </div>
+                    <div class="golden-rule" style="border-color:var(--neon-green);">
+                        <i class="fa-solid fa-triangle-exclamation" style="color:var(--neon-green);"></i>
+                        <p>⚠️ قانون التلف: أي خدش في التوصيل = خصم من عمولة الفريق كامل. عامل القطعة كأنها زجاج.</p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="dept-section" id="porters">
-            <div class="dept-header dept-porters">
-                <i class="fa-solid fa-people-carry-box"></i>
-                <h3>5. عمال المناولة والتنزيل</h3>
+        <div class="dept-section" id="warehouse">
+            <div class="dept-header dept-warehouse">
+                <i class="fa-solid fa-boxes-stacked"></i>
+                <h3>قسم المناولة والمخازن <span>Warehouse - المخزن المنظم = مبيعات أسرع.</span></h3>
             </div>
+            
             <div class="grid-cards">
                 <div class="glass-card">
-                    <div class="scenario-title"><i class="fa-solid fa-box-open"></i> سؤال الزبون عن المكان</div>
-                    <div class="chat-bubble">
-                        <div class="lang-tag" style="color:var(--neon-red);"><i class="fa-solid fa-hands"></i> عراقي محترم</div>
-                        <div class="bubble-content">
-                            "السلام عليكم أخي، من رخصتك وين تحبون نخلي الأغراض وبأي غرفة؟"
-                        </div>
+                    <div class="scenario-title" style="color:var(--neon-red);"><i class="fa-solid fa-layer-group"></i> نظام 5S الياباني للمخازن</div>
+                    <div class="system-grid">
+                        <div class="system-item" style="border-color:var(--neon-red);"><div class="letter">1S</div><div class="desc"><h5>Sort (تصنيف)</h5><p>شيل كل شيء زايد ومو ضروري</p></div></div>
+                        <div class="system-item" style="border-color:var(--neon-red);"><div class="letter">2S</div><div class="desc"><h5>Set in Order (ترتيب)</h5><p>كل شيء له مكان ثابت ومعروف</p></div></div>
+                        <div class="system-item" style="border-color:var(--neon-red);"><div class="letter">3S</div><div class="desc"><h5>Shine (تنظيف)</h5><p>أرضية نظيفة وقطع بدون غبار</p></div></div>
+                        <div class="system-item" style="border-color:var(--neon-red);"><div class="letter">4S</div><div class="desc"><h5>Standardize (معيار)</h5><p>صور للمكان المثالي للقياس عليه</p></div></div>
+                        <div class="system-item" style="border-color:var(--neon-red);"><div class="letter">5S</div><div class="desc"><h5>Sustain (استدامة)</h5><p>تفتيش أسبوعي للمحافظة على النظام</p></div></div>
                     </div>
-                    <div class="chat-bubble">
-                        <div class="lang-tag" style="color:var(--neon-red);"><i class="fa-solid fa-hands"></i> كوردي باديني</div>
-                        <div class="bubble-content">
-                            "سلاڤ و ڕێز، دەستویرێ بدەن... وە دڤێت کەلوپەلان ل کیژ ژوورێ دابنێین؟"
-                        </div>
+                </div>
+
+                <div class="glass-card">
+                    <div class="list-box list-forbidden">
+                        <h4><i class="fa-solid fa-ban"></i> الممنوع</h4>
+                        <ul>
+                            <li>إخراج أي قطعة اعتماداً على الذاكرة</li>
+                            <li>التسليم الشفهي غير الموثق</li>
+                            <li>نقل قطعة ثقيلة بمفردك</li>
+                        </ul>
+                    </div>
+                    <div class="golden-rule" style="border-color:var(--neon-red);">
+                        <i class="fa-solid fa-receipt" style="color:var(--neon-red);"></i>
+                        <p>📦 قانون الوصل: لا تطلع مسمار بدون وصل رسمي موقع — الذاكرة ممنوعة في المخزن.</p>
                     </div>
                 </div>
             </div>
@@ -463,31 +478,52 @@
         <div class="dept-section" id="cleaners">
             <div class="dept-header dept-cleaners">
                 <i class="fa-solid fa-mug-hot"></i>
-                <h3>6. خدمات الضيافة والتنظيف</h3>
+                <h3>قسم التنظيف والضيافة <span>Cleaning - النظافة ليست خدمة ثانوية، هي جزء من التسويق.</span></h3>
             </div>
+            
             <div class="grid-cards">
                 <div class="glass-card">
-                    <div class="scenario-title"><i class="fa-solid fa-coffee"></i> تقديم الضيافة</div>
-                    <div class="chat-bubble">
-                        <div class="lang-tag" style="color:var(--neon-yellow);"><i class="fa-solid fa-smile"></i> عراقي محترم</div>
-                        <div class="bubble-content">
-                            "أهلاً وسهلاً تفضلوا استريحوا، تحبون تشربون شاي أو قهوة؟"
-                        </div>
+                    <div class="stats-grid">
+                        <div class="stat-box" style="border-color:var(--neon-yellow);"><strong>🕙</strong><span>تنظيف قبل 10</span></div>
+                        <div class="stat-box" style="border-color:var(--neon-yellow);"><strong>⏱</strong><span>ضيافة بـ 3 دقائق</span></div>
+                        <div class="stat-box" style="border-color:var(--neon-yellow);"><strong>🚻</strong><span>حمامات كل ساعتين</span></div>
                     </div>
-                    <div class="chat-bubble">
-                        <div class="lang-tag" style="color:var(--neon-yellow);"><i class="fa-solid fa-smile"></i> كوردي باديني</div>
-                        <div class="bubble-content">
-                            "سەرچاڤان فەرموون، دێ چ ڤەخۆن؟ چایەکێ یان قەهوەیەکێ؟"
-                        </div>
+
+                    <div class="list-box list-forbidden" style="margin-top:20px;">
+                        <h4><i class="fa-solid fa-ban"></i> الممنوع</h4>
+                        <ul>
+                            <li>ترك الأكواب على الأثاث المعروض</li>
+                            <li>الجلوس على غرف العرض</li>
+                            <li>استخدام مكنسة أمام الزبائن — فوطة فقط</li>
+                            <li>التعامل بفتور مع الزبون</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="glass-card">
+                    <div class="scenario-title" style="color:var(--neon-yellow);"><i class="fa-solid fa-calendar-check"></i> جدول التنظيف اليومي</div>
+                    <div class="system-grid">
+                        <div class="system-item" style="border-color:var(--neon-yellow);"><div class="letter"><i class="fa-regular fa-clock" style="font-size:18px;"></i></div><div class="desc"><h5>قبل الساعة 10</h5><p>مسح كامل للطاولات + الزجاج + الأرضيات</p></div></div>
+                        <div class="system-item" style="border-color:var(--neon-yellow);"><div class="letter"><i class="fa-solid fa-restroom" style="font-size:18px;"></i></div><div class="desc"><h5>كل ساعتين</h5><p>تشييك الحمامات + معطر + مناديل</p></div></div>
+                        <div class="system-item" style="border-color:var(--neon-yellow);"><div class="letter"><i class="fa-solid fa-spray-can-sparkles" style="font-size:18px;"></i></div><div class="desc"><h5>مستمر</h5><p>إزالة الغبار فور ظهوره</p></div></div>
+                    </div>
+                    
+                    <div class="golden-rule" style="border-color:var(--neon-yellow);">
+                        <i class="fa-solid fa-wand-magic-sparkles" style="color:var(--neon-yellow);"></i>
+                        <p>✨ قاعدة Disneyland: عامل النظافة جزء من العرض — ابتسامتك وأسلوبك يصنعان انطباع الزبون الأول.</p>
                     </div>
                 </div>
             </div>
         </div>
 
-    </div>
+    </main>
+
+    <footer>
+        © 2026 Ivan Showroom. All Rights Reserved. Duhok — Zarka.
+    </footer>
 
     <script>
-        // تغيير المود
+        // تغيير المود (Dark/Light)
         const themeToggle = document.getElementById('themeToggle');
         const body = document.body;
         const themeIcon = themeToggle.querySelector('i');
@@ -496,15 +532,15 @@
             if (body.getAttribute('data-theme') === 'light') {
                 body.removeAttribute('data-theme');
                 themeIcon.className = 'fa-solid fa-moon';
-                particleColor = 'rgba(0, 210, 255, 0.4)';
+                particleColor = 'rgba(0, 210, 255, 0.3)';
             } else {
                 body.setAttribute('data-theme', 'light');
                 themeIcon.className = 'fa-solid fa-sun';
-                particleColor = 'rgba(2, 132, 199, 0.2)';
+                particleColor = 'rgba(2, 132, 199, 0.15)';
             }
         });
 
-        // تأثير الظهور عند النزول
+        // تأثير الظهور عند النزول (Scroll Animation)
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -517,23 +553,23 @@
             observer.observe(section);
         });
 
-        // حركة الجزيئات (Particles)
+        // حركة الجزيئات في الخلفية (Particles)
         const canvas = document.getElementById('particles-canvas');
         const ctx = canvas.getContext('2d');
         let width, height, particles;
-        let particleColor = 'rgba(0, 210, 255, 0.4)';
+        let particleColor = 'rgba(0, 210, 255, 0.3)';
 
         function initCanvas() {
             width = canvas.width = window.innerWidth;
             height = canvas.height = window.innerHeight;
             particles = [];
-            for (let i = 0; i < 50; i++) {
+            for (let i = 0; i < 40; i++) {
                 particles.push({
                     x: Math.random() * width,
                     y: Math.random() * height,
                     r: Math.random() * 2 + 1,
-                    vx: Math.random() * 0.5 - 0.25,
-                    vy: Math.random() * 0.5 - 0.25
+                    vx: Math.random() * 0.4 - 0.2,
+                    vy: Math.random() * 0.4 - 0.2
                 });
             }
         }
@@ -546,8 +582,7 @@
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
                 ctx.fill();
-                p.x += p.vx;
-                p.y += p.vy;
+                p.x += p.vx; p.y += p.vy;
                 if (p.x < 0 || p.x > width) p.vx *= -1;
                 if (p.y < 0 || p.y > height) p.vy *= -1;
             });
@@ -555,9 +590,9 @@
             for (let i = 0; i < particles.length; i++) {
                 for (let j = i + 1; j < particles.length; j++) {
                     const dist = Math.hypot(particles[i].x - particles[j].x, particles[i].y - particles[j].y);
-                    if (dist < 100) {
+                    if (dist < 120) {
                         ctx.beginPath();
-                        ctx.strokeStyle = particleColor.replace('0.4', (1 - dist/100) * 0.2);
+                        ctx.strokeStyle = particleColor.replace('0.3', (1 - dist/120) * 0.15);
                         ctx.lineWidth = 1;
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(particles[j].x, particles[j].y);
